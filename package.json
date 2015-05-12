@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/AlbertoFuente/lab/issues"
   },
-  "homepage": "https://github.com/AlbertoFuente/lab"
+  "homepage": "https://github.com/AlbertoFuente/lab",
+  "dependencies": {
+    "gulp": "^3.8.11",
+    "gulp-babel": "^5.1.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-watch": "^4.2.4"
+  }
 }
