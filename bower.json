@@ -1,0 +1,19 @@
+{
+  "name": "lab",
+  "version": "0.0.0",
+  "homepage": "https://github.com/AlbertoFuente/lab",
+  "authors": [
+    "AlbertoFuente <alberto.delafuente.adesis@gmail.com>"
+  ],
+  "moduleType": [
+    "es6"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
