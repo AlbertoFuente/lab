@@ -1,7 +1,8 @@
 (function() {
     'use strict';
     // IMPORTS
-    var kill = require('../api/lab.api.js');
+    var kill = require('../api/lab.api.js'),
+        worker = new Worker('../workers/lab.workers.js');
     // Elemental Particle
     function ElementalParticle() {
         var self = this;
@@ -29,13 +30,24 @@
             };
         }
 
-        this.countDown = window.setInterval(function() {
-            Date.prototype.countDown(self.existence, ElementalParticle.prototype.isDead, ElementalParticle.prototype.setExistence);
-        }, 1000);
+        this.countDown = function() {
+            var obj = {
+                existence : self.existence,
+                isDead : ElementalParticle.prototype.isDead,
+                setExistence : ElementalParticle.prototype.setExistence
+            };
+            worker.postMessage(obj);
+        };
     }
 
     function ParticleLevelOne() {
         ElementalParticle.call(this);
+
+        this._className = 'particleLevelOne';
+        this._size = 2;
+        this.strength = 2;
+        this.existence = 800;
+        this.speed = 2;
     }
     ParticleLevelOne.prototype = new ElementalParticle();
     ParticleLevelOne.prototype.constructor = ParticleLevelOne;
