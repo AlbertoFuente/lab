@@ -12,7 +12,7 @@ gulp.task('default', function() {
         'core/workers/lab.workers.js'
     ])
         .pipe(concat('lab.min.js'))
-        //.pipe(babel())
+        .pipe(babel())
         .pipe(uglify())
         .pipe(gulp.dest('js/'));
 });

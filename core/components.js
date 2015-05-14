@@ -48,7 +48,7 @@ define(function() {
             this._className = 'particleLevelOne';
             this._size = 2;
             this.strength = 2;
-            this.existence = 800;
+            this.existence = 90;
             this.speed = 2;
         }
         ParticleLevelOne.prototype = new ElementalParticle();
