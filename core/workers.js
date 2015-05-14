@@ -1,16 +1,17 @@
 (function() {
     'use strict';
 
-    self.addEventListener('message', function(obj) {
-        window.setInterval(function() {
-            console.log('worker: ' + obj.existence);
-            var limit = obj.existence - 1;
-                if (obj.isDead !== undefined) {
-                    obj.isDead(limit);
+    function calculateDeath(dead) {
+        setInterval(function() {
+            var limit = dead - 1;
+                if (limit === 0) {
+                    self.postMessage(limit);
                 }
-                if (obj.setExistence !== undefined) {
-                    obj.setExistence(limit);
-                }
+                return (dead = limit);
         }, 1000);
+    }
+
+    self.addEventListener('message', function(e) {
+        calculateDeath(e.data.ex);
     }, false);
 }());
