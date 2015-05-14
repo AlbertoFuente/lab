@@ -11,17 +11,17 @@ define(function() {
             this._size = 1;
             this.isAlive = true;
             this.strength = 1;
-            this.existence = 600;
+            this.existence = 60;
             this.spin = true;
             this.speed = 1;
             this.bornDate = new Date();
-            //this.deathDate = Date.prototype.getDeathHour(this.bornDate, this.existence);
+            this.deathDate = api.getDeathHour(this.bornDate, this.existence);
 
-            if (!ElementalParticle.prototype.isDead || !ElementalParticle.prototype.setExistence) {
+            if (!ElementalParticle.prototype.isDead || !ElementalParticle.prototype.setExistence || !ElementalParticle.prototype.deadCowntDown) {
                 ElementalParticle.prototype.isDead = function (time) {
                     if (time === 0) {
                         self.isAlive = false;
-                        //killParticle(self);
+                        api.killParticle(self);
                     } else {
                         return;
                     }
@@ -29,16 +29,17 @@ define(function() {
                 ElementalParticle.prototype.setExistence = function (newVal) {
                     self.existence = newVal;
                 };
+                ElementalParticle.prototype.deadCowntDown = function (existence) {
+                    worker.addEventListener('message', function(e) {
+                        if (e.data === 0) {
+                            ElementalParticle.prototype.setExistence(e.data);
+                        }
+                    });
+                    worker.postMessage({ 'ex': existence });
+                };
             }
 
-            this.countDown = function() {
-                var obj = {
-                    existence : self.existence,
-                    isDead : ElementalParticle.prototype.isDead,
-                    setExistence : ElementalParticle.prototype.setExistence
-                };
-                worker.postMessage(obj);
-            };
+            this.countDown = ElementalParticle.prototype.deadCowntDown(this.existence);
         }
 
         function ParticleLevelOne() {
