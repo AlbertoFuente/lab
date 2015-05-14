@@ -3,8 +3,7 @@ define(function () {
 
     return {
         getDeathHour: function (created, minutes) {
-            this.setTime(created.getTime() + minutes*60000);
-            return this;
+            return Date.prototype.setTime(created.getTime() + minutes*60000);
         },
         killParticle: function (particle) {
             particle.remove();
