@@ -2,8 +2,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     watch = require('gulp-watch'),
-    babel = require("gulp-babel"),
-    browserify = require('gulp-browserify');
+    babel = require("gulp-babel");
 
 gulp.task('default', function() {
 
@@ -12,12 +11,8 @@ gulp.task('default', function() {
         'core/components/lab.components.js',
         'core/workers/lab.workers.js'
     ])
-        .pipe(browserify ({
-          insertGlobals : true,
-          debug : !gulp.env.production
-        }))
         .pipe(concat('lab.min.js'))
-        .pipe(babel())
+        //.pipe(babel())
         .pipe(uglify())
         .pipe(gulp.dest('js/'));
 });
