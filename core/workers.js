@@ -1,6 +1,5 @@
 (function() {
     'use strict';
-    var self = this;
 
     self.addEventListener('message', function(obj) {
         window.setInterval(function() {
