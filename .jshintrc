@@ -14,9 +14,11 @@
     "jasmine": true,
     "jquery": true,
     "indent": 4,
-    "predef": [        
+    "predef": [
         "require",
         "define",
-        "escape"
+        "escape",
+        "requirejs",
+        "self"
     ]
 }
