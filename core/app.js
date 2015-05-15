@@ -2,8 +2,12 @@ define(function() {
     'use strict';
 
     return {
-        init: function(components, api) {
-            var particle = components.elementalParticle(api);
+        init: function($, _, components, api, events) {
+            var $comp = components,
+                $api = api,
+                $ev = events,
+                particle = components.elementalParticle(api);
+
             console.log(particle);
         }
     };
