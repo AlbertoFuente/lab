@@ -2,10 +2,14 @@
     'use strict';
 
     function calculateDeath(dead) {
-        setInterval(function() {
+        function stopInterval() {
+            clearInterval(count);
+        }
+        var count = setInterval(function() {
             var limit = dead - 1;
                 if (limit === 0) {
                     self.postMessage(limit);
+                    stopInterval();
                 }
                 return (dead = limit);
         }, 1000);
