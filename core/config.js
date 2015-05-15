@@ -1,17 +1,22 @@
 requirejs.config({
     app_name: 'lab',
     paths: {
-      'api': 'api'
+      'api': 'api',
+      'components': 'components',
+      'app': 'app'
   },
   shim: {
         'api': {
             exports: 'api',
+        },
+        'components': {
+            exports: 'components'
         }
     }
 });
 
-require(['components', 'api'], function(comp, api){
+require(['components', 'api', 'app'], function(comp, api, app){
     'use strict';
-    
-	comp.init(api);
+
+	app.init(comp, api);
 });
