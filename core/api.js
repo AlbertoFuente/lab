@@ -4,7 +4,6 @@ define(['jquery', 'lodash', 'events'], function ($, _, ev) {
     return {
         killParticle: function (particle) {
             $(particle).remove();
-            console.log('particle dead');
         },
         setExistence: function(newVal, particle) {
             particle.existence = newVal;
@@ -28,6 +27,18 @@ define(['jquery', 'lodash', 'events'], function ($, _, ev) {
             self.existence = self.existence + 30;
             self.speed = self.speed * 2;
             return self;
+        },
+        detectDomElement: function(node, name, options) {
+            _.map(node.childNodes, function(n) {
+                if (n.tagName === 'SELECT') {
+                    var nodeName = n.getAttribute('name');
+                    if (nodeName === name) {
+                        _.each(options, function(op, i) {
+                            $(n).append('<option class="selectTableSize' + i + '">' + op + '</option>');
+                        });
+                    }
+                }
+            });
         },
         moveTop: function() {
             // TODO: Think how to do this
