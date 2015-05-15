@@ -3,7 +3,11 @@ requirejs.config({
     paths: {
       'api': 'api',
       'components': 'components',
-      'app': 'app'
+      'app': 'app',
+      'events': 'events',
+      // vendor
+      'jquery': '../bower_components/jquery/dist/jquery.min',
+      'lodash': '../bower_components/lodash/lodash.min'
   },
   shim: {
         'api': {
@@ -11,12 +15,21 @@ requirejs.config({
         },
         'components': {
             exports: 'components'
+        },
+        'events': {
+            exports: 'events'
+        },
+        'jquery': {
+            exports: 'jquery'
+        },
+        'lodash': {
+            exports: 'lodash'
         }
     }
 });
 
-require(['components', 'api', 'app'], function(comp, api, app){
+require(['jquery', 'lodash', 'components', 'api', 'events', 'app'], function($, _, comp, api, events, app){
     'use strict';
 
-	app.init(comp, api);
+	app.init($, _, comp, api, events);
 });
