@@ -1,14 +1,11 @@
-define(function() {
+define(['jquery', 'lodash', 'api', 'components', 'events'], function($, _, _api, _comp, _ev) {
     'use strict';
 
     return {
-        init: function($, _, components, api, events) {
-            var $comp = components,
-                $api = api,
-                $ev = events,
-                particle = components.elementalParticle(api);
+        init: function() {
+            var particle = _comp.elementalParticle();
 
             console.log(particle);
         }
     };
-}());
+});

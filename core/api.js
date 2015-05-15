@@ -1,9 +1,9 @@
-define('api', function () {
+define(['jquery', 'lodash', 'events'], function ($, _, ev) {
     'use strict';
 
     return {
         killParticle: function (particle) {
-            // destroy particle
+            $(particle).remove();
             console.log('particle dead');
         },
         setExistence: function(newVal, particle) {

@@ -30,6 +30,5 @@ requirejs.config({
 
 require(['jquery', 'lodash', 'components', 'api', 'events', 'app'], function($, _, comp, api, events, app){
     'use strict';
-
-	app.init($, _, comp, api, events);
+	app.init();
 });
