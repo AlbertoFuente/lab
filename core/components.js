@@ -12,6 +12,9 @@ define(['jquery', 'lodash', 'api'], function($, _, _api) {
             this.countDown = _api.deadCowntDown(this);
 
             return this;
+        },
+        tableSizeSelect: function() {
+
         }
     };
 });

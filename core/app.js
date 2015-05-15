@@ -3,9 +3,11 @@ define(['jquery', 'lodash', 'api', 'components', 'events'], function($, _, _api,
 
     return {
         init: function() {
-            var particle = _comp.elementalParticle();
+            var dashboard = document.getElementById('dashboard'),
+                configPanel = document.getElementById('configPanel'),
+                particle = _comp.elementalParticle();
 
-            console.log(particle);
+            console.log(configPanel);
         }
     };
 });
