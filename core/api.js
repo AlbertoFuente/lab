@@ -1,4 +1,4 @@
-define(['jquery', 'lodash', 'events'], function ($, _, ev) {
+define(['jquery', 'lodash'], function ($, _) {
     'use strict';
 
     return {
