@@ -1,9 +1,8 @@
-define(['jquery', 'lodash', 'api', 'components', 'events'], function($, _, _api, _comp, _ev) {
+define(['jquery', 'lodash', 'api', 'components'], function($, _, _api, _comp) {
     'use strict';
 
     return {
         init: function() {
-            'use strict';
             var dashboard = document.getElementById('dashboard'),
                 configPanel = document.getElementById('configPanel'),
                 // Print Select table size options
@@ -13,15 +12,24 @@ define(['jquery', 'lodash', 'api', 'components', 'events'], function($, _, _api,
                 // Print number of particles options
                 numberParticleOptions = _api.detectDomElement(configPanel, 'numberOfParticles', _api.particleOptions),
                 // number of particle Select
-                numberParticles = _api.detectSelect(configPanel, 'numberOfParticles');
+                numberParticles = _api.detectSelect(configPanel, 'numberOfParticles'),
+                self = this;
 
                 // onChange events
                 tableSize.onchange = function (e) {
-                    _ev.tableSizeSelected(e);
+                    self.tableSizeSelected(e);
                 };
                 numberParticles.onchange = function (e) {
-                    _ev.numberOfParticlesSelected(e);
+                    self.numberOfParticlesSelected(e);
                 };
+        },
+        tableSizeSelected: function (ev) {
+            var data = ev.srcElement.value;
+            _comp.tableSizes(data);
+        },
+        numberOfParticlesSelected: function (ev) {
+            var data = ev.srcElement.value;
+            _comp.numberOfParticles(data);
         }
     };
 });
