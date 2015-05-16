@@ -3,14 +3,25 @@ define(['jquery', 'lodash', 'api', 'components', 'events'], function($, _, _api,
 
     return {
         init: function() {
+            'use strict';
             var dashboard = document.getElementById('dashboard'),
                 configPanel = document.getElementById('configPanel'),
                 // Print Select table size options
-                sizeOptions = ['600 x 800', '800 x 1200', '1200 x 1400', '1400 x 1600'],
-                tableSizeOptions = _api.detectDomElement(configPanel, 'tableSize', sizeOptions),
+                tableSizeOptions = _api.detectDomElement(configPanel, 'tableSize', _api.sizeOptions),
+                // table size Select
+                tableSize = _api.detectSelect(configPanel,'tableSize'),
                 // Print number of particles options
-                particleOptions = ['Random', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
-                numberParticleOptions = _api.detectDomElement(configPanel, 'numberOfParticles', particleOptions);
+                numberParticleOptions = _api.detectDomElement(configPanel, 'numberOfParticles', _api.particleOptions),
+                // number of particle Select
+                numberParticles = _api.detectSelect(configPanel, 'numberOfParticles');
+
+                // onChange events
+                tableSize.onchange = function (e) {
+                    _ev.tableSizeSelected(e);
+                };
+                numberParticles.onchange = function (e) {
+                    _ev.numberOfParticlesSelected(e);
+                };
         }
     };
 });

@@ -13,7 +13,19 @@ define(['jquery', 'lodash', 'api'], function($, _, _api) {
 
             return this;
         },
-        tableSizeSelect: function() {
+        tableSize: function (size) {
+            switch (size) {
+                case '600 x 800':
+                    break;
+                case '800 x 1200':
+                    break;
+                case '1200 x 1400':
+                    break;
+                case '1400 x 1600':
+                    break;
+            }
+        },
+        createTable: function(obj) {
 
         }
     };
