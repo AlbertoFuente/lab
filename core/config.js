@@ -1,13 +1,13 @@
 requirejs.config({
     app_name: 'lab',
     paths: {
-      'api': 'api',
-      'components': 'components',
-      'app': 'app',
-      'events': 'events',
-      // vendor
-      'jquery': '../bower_components/jquery/dist/jquery.min',
-      'lodash': '../bower_components/lodash/lodash.min'
+        // vendor
+        'jquery': '../bower_components/jquery/dist/jquery.min',
+        'lodash': '../bower_components/lodash/lodash.min',
+        // scripts
+        'api': 'api',
+        'components': 'components',
+        'app': 'app'
   },
   shim: {
         'api': {
@@ -16,19 +16,19 @@ requirejs.config({
         'components': {
             exports: 'components'
         },
-        'events': {
-            exports: 'events'
-        },
         'jquery': {
             exports: 'jquery'
         },
         'lodash': {
             exports: 'lodash'
+        },
+        'app': {
+            exports: 'app'
         }
     }
 });
 
-require(['jquery', 'lodash', 'components', 'api', 'events', 'app'], function($, _, comp, api, events, app){
+require(['jquery', 'lodash', 'components', 'api', 'app'], function($, _, comp, api, app){
     'use strict';
 	app.init();
 });
