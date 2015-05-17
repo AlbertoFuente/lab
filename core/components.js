@@ -106,7 +106,12 @@ define(['jquery', 'lodash', 'api'], function($, _, _api) {
                     table.style.height = obj.height + 'px';
 
                     $(table).append(this.rowsRange);
-                    $(dashboard).append(table);
+
+                    if (_.isUndefined(dashboard.childNodes[0])) {
+                        $(dashboard).append(table);
+                    } else {
+                        return;
+                    }
             }
         }
     };
