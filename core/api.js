@@ -3,7 +3,7 @@ define(['jquery', 'lodash'], function ($, _) {
 
     return {
         killParticle: function (particle) {
-            $(particle).remove();
+            $(particle).removeClass('elementalParticle');
         },
         setExistence: function(newVal, particle) {
             particle.existence = newVal;
