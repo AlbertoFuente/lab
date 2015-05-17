@@ -64,18 +64,64 @@ define(['jquery', 'lodash'], function ($, _) {
             });
             return result;
         },
+        particlesFight: function(particle) {
+            console.log('particle fight');
+        },
+        movements: ['top', 'bottom', 'right', 'left'],
         sizeOptions: ['100 x 300', '300 x 600', '600 x 800', '800 x 1200', '1200 x 1400', '1400 x 1600'],
         particleOptions: ['Random', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100', '200', '300', '400', '500', '600', '700', '800', '900', '1000'],
-        moveTop: function() {
+        moveTop: function(particle) {
+            if (!_.isUndefined(particle.className)) {
+                var self = this,
+                    particleName = particle.getAttribute('name'),
+                    particleParent = particle.parentNode,
+                    particleParentData = particleParent.getAttribute('data'),
+                    upTrNum = particleParentData - 10,
+                    upTr = document.getElementsByClassName('tr' + upTrNum);
+
+                    if (!_.isUndefined(upTr)) {
+                        _.map(upTr[0].childNodes, function(n) {
+                            var nName = n.getAttribute('name');
+                            if (n.tagName === 'TD' && nName === particleName) {
+                                if (n.className === nName + ' elementalParticle') {
+                                    self.particlesFight(particle);
+                                } else {
+                                    $(particle).removeClass('elementalParticle');
+                                    $(n).addClass('elementalParticle');
+                                }
+                            }
+                        });
+                    }
+            }
+        },
+        moveBottom: function(particle) {
+            if (!_.isUndefined(particle.className)) {
+                var self = this,
+                    particleName = particle.getAttribute('name'),
+                    particleParent = particle.parentNode,
+                    particleParentData = particleParent.getAttribute('data'),
+                    upTrNum = particleParentData + 10,
+                    upTr = document.getElementsByClassName('tr' + upTrNum);
+
+                    if (!_.isUndefined(upTr)) {
+                        _.map(upTr[0].childNodes, function(n) {
+                            var nName = n.getAttribute('name');
+                            if (n.tagName === 'TD' && nName === particleName) {
+                                if (n.className === nName + ' elementalParticle') {
+                                    self.particlesFight(particle);
+                                } else {
+                                    $(particle).removeClass('elementalParticle');
+                                    $(n).addClass('elementalParticle');
+                                }
+                            }
+                        });
+                    }
+            }
+        },
+        moveRight: function(particle) {
             // TODO: Think how to do this
         },
-        moveBottom: function() {
-            // TODO: Think how to do this
-        },
-        moveRight: function() {
-            // TODO: Think how to do this
-        },
-        moveLeft: function() {
+        moveLeft: function(particle) {
             // TODO: Think how to do this
         }
     };
