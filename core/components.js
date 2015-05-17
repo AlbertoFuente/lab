@@ -6,7 +6,7 @@ define(['jquery', 'lodash', 'api'], function($, _, _api) {
             this.size = 1;
             this.isAlive = true;
             this.strength = 1;
-            this.existence = 60;
+            this.existence = 6;
             this.spin = true;
             this.speed = 1;
             this.countDown = _api.deadCowntDown(this);
@@ -44,8 +44,25 @@ define(['jquery', 'lodash', 'api'], function($, _, _api) {
             console.log(num);
         },
         createTable: function(obj) {
-            if (typeof obj === 'object' && (obj.width !== undefined && obj.height !== undefined)) {
+            if (_.isObject(obj) && (!_.isUndefined(obj.width) && !_.isUndefined(obj.height))) {
+                var dashboard = document.getElementById('tableDashboard'),
+                    table = document.createElement('table'),
+                    height = _.parseInt(obj.height),
+                    width = _.parseInt(obj.width),
+                    tableWidthRange = _.range(0, width, 10),
+                    tableHeightRange = _.range(0, height, 10),
+                    rowsRange = _.map(tableHeightRange, function (n) {
+                        var tds = _.map(tableWidthRange, function (d) {
+                            return '<td class="td'+ d +'"></td>';
+                        });
+                        return '<tr class="tr' + n + '">' + tds + '</tr>';
+                    });
 
+                    table.style.width = obj.width + 'px';
+                    table.style.height = obj.height + 'px';
+
+                    $(table).append(rowsRange);
+                    $(dashboard).append(table);
             }
         }
     };
