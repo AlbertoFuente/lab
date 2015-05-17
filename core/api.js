@@ -40,6 +40,9 @@ define(['jquery', 'lodash'], function ($, _) {
                 }
             });
         },
+        randomNumber: function (first, last) {
+            return _.random(first, last);
+        },
         detectSelect: function (node, name) {
             var newObj = null;
             _.each(node.childNodes, function(n) {
@@ -52,8 +55,17 @@ define(['jquery', 'lodash'], function ($, _) {
             });
             return newObj;
         },
-        sizeOptions: ['600 x 800', '800 x 1200', '1200 x 1400', '1400 x 1600'],
-        particleOptions: ['Random', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+        returnClasses: function (data) {
+            var result = [];
+            _.map(data, function(n) {
+                if (n.tagName === 'TR' || n.tagName === 'TD') {
+                    result.push(n.className);
+                }
+            });
+            return result;
+        },
+        sizeOptions: ['100 x 300', '300 x 600', '600 x 800', '800 x 1200', '1200 x 1400', '1400 x 1600'],
+        particleOptions: ['Random', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100', '200', '300', '400', '500', '600', '700', '800', '900', '1000'],
         moveTop: function() {
             // TODO: Think how to do this
         },
