@@ -97,9 +97,9 @@ define(['jquery', 'lodash', 'api'], function($, _, _api) {
 
                 this.rowsRange = _.map(tableHeightRange, function (n) {
                         var tds = _.map(tableWidthRange, function (d) {
-                            return '<td class="td'+ d +'"></td>';
+                            return '<td name="td' + d + '" class="td'+ d +'" data="' + d + '"></td>';
                         });
-                        return '<tr class="tr' + n + '">' + tds + '</tr>';
+                        return '<tr class="tr' + n + '" data="' + n + '">' + tds + '</tr>';
                     });
 
                     table.style.width = obj.width + 'px';
