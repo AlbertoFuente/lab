@@ -119,10 +119,18 @@ define(['jquery', 'lodash'], function ($, _) {
             }
         },
         moveRight: function(particle) {
-            // TODO: Think how to do this
+            if (!_.isUndefined(particle.className)) {
+                var prevTd = $(particle).prev();
+                $(particle).removeClass('elementalParticle');
+                $(prevTd).addClass('elementalParticle');
+            }
         },
         moveLeft: function(particle) {
-            // TODO: Think how to do this
+            if (!_.isUndefined(particle.className)) {
+                var nextTd = $(particle).next();
+                $(particle).removeClass('elementalParticle');
+                $(nextTd).addClass('elementalParticle');
+            }
         }
     };
 });
