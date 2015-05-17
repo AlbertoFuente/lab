@@ -1,0 +1,14 @@
+#tableDashboard table {
+    margin-top: 20px;
+    border-spacing: 0;
+    border: 1px solid grey;
+}
+
+#tableDashboard table tbody tr{
+    width: auto;
+}
+
+#tableDashboard table tbody td{
+    border-left: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
