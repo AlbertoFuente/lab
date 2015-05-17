@@ -64,7 +64,7 @@ define(['jquery', 'lodash'], function ($, _) {
             });
             return result;
         },
-        particlesFight: function(particle) {
+        particlesFight: function(particle1, particle2) {
             console.log('particle fight');
         },
         movements: ['top', 'bottom', 'right', 'left'],
@@ -84,7 +84,7 @@ define(['jquery', 'lodash'], function ($, _) {
                             var nName = n.getAttribute('name');
                             if (n.tagName === 'TD' && nName === particleName) {
                                 if (n.className === nName + ' elementalParticle') {
-                                    self.particlesFight(particle);
+                                    self.particlesFight(particle, n);
                                 } else {
                                     $(particle).removeClass('elementalParticle');
                                     $(n).addClass('elementalParticle');
@@ -108,7 +108,7 @@ define(['jquery', 'lodash'], function ($, _) {
                             var nName = n.getAttribute('name');
                             if (n.tagName === 'TD' && nName === particleName) {
                                 if (n.className === nName + ' elementalParticle') {
-                                    self.particlesFight(particle);
+                                    self.particlesFight(particle, n);
                                 } else {
                                     $(particle).removeClass('elementalParticle');
                                     $(n).addClass('elementalParticle');
