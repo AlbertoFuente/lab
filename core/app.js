@@ -13,6 +13,8 @@ define(['jquery', 'lodash', 'api', 'components'], function($, _, _api, _comp) {
                 numberParticleOptions = _api.detectDomElement(configPanel, 'numberOfParticles', _api.particleOptions),
                 // number of particle Select
                 numberParticles = _api.detectSelect(configPanel, 'numberOfParticles'),
+                // Elemental particle
+                elementalParticle = _comp.elementalParticle(),
                 self = this;
 
                 // onChange events
