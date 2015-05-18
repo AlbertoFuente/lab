@@ -1,13 +1,17 @@
 (function() {
     'use strict';
 
-    function setMove(dir) {
+    self.importScripts('../bower_components/lodash/lodash.min.js');
+    var movements = ['top', 'bottom', 'right', 'left'];
+
+    function setMove() {
         var move = setInterval(function() {
-            self.postMessage(dir);
+            var moves = _.sample(movements);
+            self.postMessage(moves);
         }, 1000);
     }
 
-    self.addEventListener('message', function(e) {
-        setMove(e.data.direction);
+    self.addEventListener('message', function() {
+        setMove();
     }, false);
 }());
