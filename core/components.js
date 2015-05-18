@@ -13,30 +13,26 @@ define(['jquery', 'lodash', 'api'], function($, _, _api) {
             this.moves = function () {
                 var self = this;
                 if (_api.particlesCreated) {
-                    var direction = _.sample(_api.movements);
-
-                    if (!_.isUndefined(direction)) {
-                        var worker = new Worker('core/movesWorker.js');
+                    var worker = new Worker('core/movesWorker.js');
                         worker.addEventListener('message', function(e) {
-                            if (!_.isUndefined(e.data)) {
-                                switch(e.data) {
-                                    case 'top':
-                                        _api.moveTop(self);
-                                        break;
-                                    case 'left':
-                                        _api.moveLeft(self);
-                                        break;
-                                    case 'bottom':
-                                        _api.moveBottom(self);
-                                        break;
-                                    case 'right':
-                                        _api.moveRight(self);
-                                        break;
-                                }
+                        if (!_.isUndefined(e.data)) {
+                            switch(e.data) {
+                                case 'top':
+                                    _api.moveTop(self);
+                                    break;
+                                case 'left':
+                                    _api.moveLeft(self);
+                                    break;
+                                case 'bottom':
+                                    _api.moveBottom(self);
+                                    break;
+                                case 'right':
+                                    _api.moveRight(self);
+                                    break;
                             }
-                        });
-                        worker.postMessage({ 'direction': direction });
-                    }
+                        }
+                    });
+                    worker.postMessage();
                 }
             };
 
