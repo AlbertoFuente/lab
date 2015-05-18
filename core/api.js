@@ -26,7 +26,6 @@ define(['jquery', 'lodash'], function ($, _) {
             self.strength = self.strength * 2;
             self.existence = self.existence + 30;
             self.speed = self.speed * 2;
-            return self;
         },
         detectDomElement: function (node, name, options) {
             _.map(node.childNodes, function(n) {
@@ -65,7 +64,38 @@ define(['jquery', 'lodash'], function ($, _) {
             return result;
         },
         particlesFight: function(particle1, particle2) {
-            console.log('particle fight');
+            var particle1Strength = particle1.strength,
+                particle2Strength = particle2.strength,
+                random1 = this.randomNumber(0,10),
+                random2 = this.randomNumber(0,10);
+
+                if (particle1Strength === particle2Strength) {
+                    if (random1 > random2) {
+                        this.killParticle(particle2);
+                        this.removeOldParticle(particle2);
+                        this.upLevel(particle1);
+                        $(particle1).removeClass('elementParticle');
+                        $(particle1).addClass('elementParticle1');
+                    } else {
+                        this.killParticle(particle1);
+                        this.removeOldParticle(particle2);
+                        this.upLevel(particle2);
+                        $(particle2).removeClass('elementParticle');
+                        $(particle2).addClass('elementParticle1');
+                    }
+                } else if (particle1Strength > particle2Strength) {
+                    this.killParticle(particle2);
+                    this.removeOldParticle(particle2);
+                    this.upLevel(particle1);
+                    $(particle1).removeClass('elementParticle1');
+                    $(particle1).addClass('elementParticle2');
+                } else {
+                    this.killParticle(particle1);
+                    this.removeOldParticle(particle1);
+                    this.upLevel(particle2);
+                    $(particle2).removeClass('elementParticle1');
+                    $(particle2).addClass('elementParticle2');
+                }
         },
         particlesCreated: false,
         movements: ['top', 'bottom', 'right', 'left'],
@@ -91,6 +121,17 @@ define(['jquery', 'lodash'], function ($, _) {
             newParticle.countDown = oldParticle.countDown;
             newParticle.moves = oldParticle.moves;
         },
+        setClass: function(particle) {
+            if ($(particle).hasClass('elementalParticle')) {
+                $(particle).removeClass('elementalParticle');
+                $(particle).addClass('elementalParticle1');
+            } else if ($(particle).hasClass('elementalParticle1')) {
+                $(particle).removeClass('elementalParticle1');
+                $(particle).addClass('elementalParticle2');
+            } else {
+                $(particle).addClass('elementalParticle');
+            }
+        },
         moveTop: function(particle) {
             if (!_.isUndefined(particle.className)) {
                 var self = this,
@@ -104,11 +145,13 @@ define(['jquery', 'lodash'], function ($, _) {
                         _.map(upTr[0].childNodes, function(n) {
                             var nName = n.getAttribute('name');
                             if (n.tagName === 'TD' && nName === particleName) {
-                                if (n.className === nName + ' elementalParticle') {
+                                if (n.className === nName + ' elementalParticle'
+                                || n.className === nName + ' elementalParticle1'
+                                || n.className === nName + ' elementalParticle2') {
                                     self.particlesFight(particle, n);
                                 } else {
                                     $(particle).removeClass('elementalParticle');
-                                    $(n).addClass('elementalParticle');
+                                    self.setClass(n);
                                     self.passProperties(particle, n);
                                     self.removeOldParticle(particle);
                                 }
@@ -130,11 +173,13 @@ define(['jquery', 'lodash'], function ($, _) {
                         _.map(upTr[0].childNodes, function(n) {
                             var nName = n.getAttribute('name');
                             if (n.tagName === 'TD' && nName === particleName) {
-                                if (n.className === nName + ' elementalParticle') {
+                                if (n.className === nName + ' elementalParticle'
+                                || n.className === nName + ' elementalParticle1'
+                                || n.className === nName + ' elementalParticle2') {
                                     self.particlesFight(particle, n);
                                 } else {
                                     $(particle).removeClass('elementalParticle');
-                                    $(n).addClass('elementalParticle');
+                                    self.setClass(n);
                                     self.passProperties(particle, n);
                                     self.removeOldParticle(particle);
                                 }
@@ -156,11 +201,13 @@ define(['jquery', 'lodash'], function ($, _) {
                             nName = n.getAttribute('name');
 
                         if (newNum === num) {
-                            if (n.className === nName + ' elementalParticle') {
+                            if (n.className === nName + ' elementalParticle'
+                            || n.className === nName + ' elementalParticle1'
+                            || n.className === nName + ' elementalParticle2') {
                                 self.particlesFight(particle, n);
                             } else {
                                 $(particle).removeClass('elementalParticle');
-                                $(n).addClass('elementalParticle');
+                                self.setClass(n);
                                 self.passProperties(particle, n);
                                 self.removeOldParticle(particle);
                             }
@@ -182,11 +229,13 @@ define(['jquery', 'lodash'], function ($, _) {
                             nName = n.getAttribute('name');
 
                         if (newNum === num) {
-                            if (n.className === nName + ' elementalParticle') {
+                            if (n.className === nName + ' elementalParticle'
+                            || n.className === nName + ' elementalParticle1'
+                            || n.className === nName + ' elementalParticle2') {
                                 self.particlesFight(particle, n);
                             } else {
                                 $(particle).removeClass('elementalParticle');
-                                $(n).addClass('elementalParticle');
+                                self.setClass(n);
                                 self.passProperties(particle, n);
                                 self.removeOldParticle(particle);
                             }
