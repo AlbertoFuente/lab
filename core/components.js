@@ -10,6 +10,35 @@ define(['jquery', 'lodash', 'api'], function($, _, _api) {
             this.spin = true;
             this.speed = 1;
             this.countDown = _api.deadCowntDown(this);
+            this.moves = function () {
+                var self = this;
+                if (_api.particlesCreated) {
+                    var direction = _.sample(_api.movements);
+
+                    if (!_.isUndefined(direction)) {
+                        var worker = new Worker('core/movesWorker.js');
+                        worker.addEventListener('message', function(e) {
+                            if (!_.isUndefined(e.data)) {
+                                switch(e.data) {
+                                    case 'top':
+                                        _api.moveTop(self);
+                                        break;
+                                    case 'left':
+                                        _api.moveLeft(self);
+                                        break;
+                                    case 'bottom':
+                                        _api.moveBottom(self);
+                                        break;
+                                    case 'right':
+                                        _api.moveRight(self);
+                                        break;
+                                }
+                            }
+                        });
+                        worker.postMessage({ 'direction': direction });
+                    }
+                }
+            };
 
             return this;
         },
@@ -63,7 +92,7 @@ define(['jquery', 'lodash', 'api'], function($, _, _api) {
 
             if (dashboard.childNodes[0].tagName === 'TABLE') {
                 var self = this,
-                    tableChilds = document.getElementById('tableDashboard').childNodes[0].childNodes[0].childNodes,
+                    tableChilds = dashboard.childNodes[0].childNodes[0].childNodes,
                     trClasses = _api.returnClasses(tableChilds),
                     tdClasses = _api.returnClasses(tableChilds[0].childNodes),
                     i = 0;
@@ -78,6 +107,8 @@ define(['jquery', 'lodash', 'api'], function($, _, _api) {
                                         if (d.className === tdRandom) {
                                             d.className += ' elementalParticle';
                                             self.elementalParticle.call(d);
+                                            _api.particlesCreated = true;
+                                            d.moves();
                                         }
                                     });
                                 }
