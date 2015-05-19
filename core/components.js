@@ -47,6 +47,14 @@ define(['jquery', 'lodash', 'api'], function($, _, _api) {
         tableSizes: function (size) {
             var tableSize = null;
             switch (size) {
+                case '10 x 50':
+                    tableSize = this.tableConfig('10', '50');
+                    this.createTable(tableSize);
+                    break;
+                case '50 x 100':
+                    tableSize = this.tableConfig('50', '100');
+                    this.createTable(tableSize);
+                    break;
                 case '100 x 300':
                     tableSize = this.tableConfig('100', '300');
                     this.createTable(tableSize);
