@@ -120,7 +120,6 @@ define(['jquery', 'lodash'], function ($, _) {
             newParticle.speed = oldParticle.speed;
             newParticle.countDown = oldParticle.countDown;
             newParticle.moves = oldParticle.moves;
-            return newParticle;
         },
         setClass: function(particle) {
             if ($(particle).hasClass('elementalParticle')) {
