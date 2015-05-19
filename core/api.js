@@ -120,6 +120,7 @@ define(['jquery', 'lodash'], function ($, _) {
             newParticle.speed = oldParticle.speed;
             newParticle.countDown = oldParticle.countDown;
             newParticle.moves = oldParticle.moves;
+            return newParticle;
         },
         setClass: function(particle) {
             if ($(particle).hasClass('elementalParticle')) {
@@ -150,10 +151,11 @@ define(['jquery', 'lodash'], function ($, _) {
                                 || n.className === nName + ' elementalParticle2') {
                                     self.particlesFight(particle, n);
                                 } else {
-                                    $(particle).removeClass('elementalParticle');
                                     self.setClass(n);
                                     self.passProperties(particle, n);
-                                    self.removeOldParticle(particle);
+                                    if(!_.isUndefined(n) && _.isFunction(n.moves)) {
+                                        n.moves();
+                                    }
                                 }
                             }
                         });
@@ -178,10 +180,11 @@ define(['jquery', 'lodash'], function ($, _) {
                                 || n.className === nName + ' elementalParticle2') {
                                     self.particlesFight(particle, n);
                                 } else {
-                                    $(particle).removeClass('elementalParticle');
                                     self.setClass(n);
                                     self.passProperties(particle, n);
-                                    self.removeOldParticle(particle);
+                                    if(!_.isUndefined(n) && _.isFunction(n.moves)) {
+                                        n.moves();
+                                    }
                                 }
                             }
                         });
@@ -206,10 +209,11 @@ define(['jquery', 'lodash'], function ($, _) {
                             || n.className === nName + ' elementalParticle2') {
                                 self.particlesFight(particle, n);
                             } else {
-                                $(particle).removeClass('elementalParticle');
                                 self.setClass(n);
                                 self.passProperties(particle, n);
-                                self.removeOldParticle(particle);
+                                if(!_.isUndefined(n) && _.isFunction(n.moves)) {
+                                    n.moves();
+                                }
                             }
                         }
                     });
@@ -234,10 +238,11 @@ define(['jquery', 'lodash'], function ($, _) {
                             || n.className === nName + ' elementalParticle2') {
                                 self.particlesFight(particle, n);
                             } else {
-                                $(particle).removeClass('elementalParticle');
                                 self.setClass(n);
                                 self.passProperties(particle, n);
-                                self.removeOldParticle(particle);
+                                if(!_.isUndefined(n) && _.isFunction(n.moves)) {
+                                    n.moves();
+                                }
                             }
                         }
                     });
