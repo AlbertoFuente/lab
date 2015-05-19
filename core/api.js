@@ -99,8 +99,8 @@ define(['jquery', 'lodash'], function ($, _) {
         },
         particlesCreated: false,
         movements: ['top', 'bottom', 'right', 'left'],
-        sizeOptions: ['100 x 300', '300 x 600', '600 x 800', '800 x 1200', '1200 x 1400', '1400 x 1600'],
-        particleOptions: ['Random', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100', '200', '300', '400', '500', '600', '700', '800', '900', '1000'],
+        sizeOptions: ['10 x 50', '50 x 100', '100 x 300', '300 x 600', '600 x 800', '800 x 1200', '1200 x 1400', '1400 x 1600'],
+        particleOptions: ['Random', '5', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100', '200', '300', '400', '500', '600', '700', '800', '900', '1000'],
         removeOldParticle: function(particle) {
             particle.size = 0;
             particle.isAlive = false;
