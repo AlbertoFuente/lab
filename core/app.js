@@ -26,11 +26,12 @@ define(['jquery', 'lodash', 'api', 'components'], function($, _, _api, _comp) {
                 };
         },
         tableSizeSelected: function (ev) {
-            var data = ev.srcElement.value;
+            console.log(ev);
+            var data = ev.srcElement.value || ev.target.value;
             _comp.tableSizes(data);
         },
         numberOfParticlesSelected: function (ev) {
-            var data = ev.srcElement.value;
+            var data = ev.srcElement.value || ev.target.value;
             _comp.numberOfParticles(data);
         }
     };
