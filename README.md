@@ -1,1 +1,1 @@
-lab project
+Particles laboratory project.
