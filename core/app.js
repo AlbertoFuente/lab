@@ -26,7 +26,6 @@ define(['jquery', 'lodash', 'api', 'components'], function($, _, _api, _comp) {
                 };
         },
         tableSizeSelected: function (ev) {
-            console.log(ev);
             var data = ev.srcElement.value || ev.target.value;
             _comp.tableSizes(data);
         },
