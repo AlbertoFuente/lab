@@ -32,7 +32,7 @@ define(['jquery', 'lodash', 'api'], function($, _, _api) {
                             }
                         }
                     });
-                    worker.postMessage();
+                    worker.postMessage('message');
                 }
             };
 
